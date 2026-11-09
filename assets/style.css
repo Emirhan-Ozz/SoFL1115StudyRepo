@@ -164,3 +164,28 @@ code { background: var(--panel2); padding: .05rem .35rem; border-radius: 4px; fo
   .opts { flex-direction: column; align-items: stretch; }
   .part > h2 { flex-direction: column; gap: 0; }
 }
+
+/* kelimeler */
+.vctl { position: sticky; top: 49px; z-index: 5; background: var(--bg); padding: .6rem 0; border-bottom: 1px solid var(--line); }
+#vq { width: 100%; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: .55rem .8rem; }
+#vq:focus { outline: none; border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.chips button { font: inherit; font-size: .88rem; cursor: pointer; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: .25rem .75rem; }
+.chips button.on { color: var(--text); border-color: var(--accent); background: rgba(143, 179, 217, .12); }
+.vrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin-top: .5rem; }
+.vrow label { display: flex; align-items: center; gap: .4rem; color: var(--muted); cursor: pointer; }
+.vrow .btn { margin-left: auto; }
+table.vocab { width: 100%; border-collapse: collapse; }
+table.vocab td { padding: .45rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.vocab td.en { width: 48%; }
+table.vocab td.tr { color: #c9cdd3; }
+.tag { font-size: .72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 .3rem; margin-left: .3rem; white-space: nowrap; }
+.hide-tr td.tr span { visibility: hidden; }
+.hide-tr td.tr { background: var(--panel); cursor: pointer; }
+.hide-tr tr.show td.tr span { visibility: visible; }
+.hide-tr tr.show td.tr { background: transparent; }
+.flash { margin: 1rem 0; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; text-align: center; cursor: pointer; user-select: none;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; }
+.flash .front { font-size: 1.6rem; font-weight: 600; }
+.flash .back { font-size: 1.2rem; color: var(--accent); }
+@media (max-width: 560px) { .top nav { gap: .7rem; font-size: .9rem; } .flash .front { font-size: 1.35rem; } table.vocab td { font-size: .93rem; } }

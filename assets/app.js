@@ -14,8 +14,9 @@
     stopSpeech();
     const h = location.hash.replace(/^#\/?/, '');
     const [page, id] = h.split('/');
-    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (page === 'rehber' ? 'rehber' : 'home')));
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (page === 'rehber' || page === 'kelimeler' ? page : 'home')));
     if (page === 'rehber') { app.innerHTML = window.GUIDE || ''; }
+    else if (page === 'kelimeler') { renderVocab(); }
     else if (page === 'test' && EXAMS.find(e => e.id === id)) { renderExam(EXAMS.find(e => e.id === id)); }
     else { renderHome(); }
     window.scrollTo(0, 0);
@@ -32,7 +33,7 @@
     }).join('');
     app.innerHTML = `
       <h1>SoFL 1115 vize çalışma</h1>
-      <p class="lead">Gerçek vize formatında 4 test: hocanın örnek sınavı ve 3 deneme vizesi. Her test Listening (15 soru), Reading (20 soru) ve Writing'den oluşuyor. Önce <a href="#/rehber">sınav rehberine</a> bir göz at.</p>
+      <p class="lead">Gerçek vize formatında 4 test: hocanın örnek sınavı ve 3 deneme vizesi. Her test Listening (15 soru), Reading (20 soru) ve Writing'den oluşuyor. Önce <a href="#/rehber">sınav rehberine</a> bir göz at; metinlerdeki kelimeler ve kalıplar <a href="#/kelimeler">Kelimeler</a> menüsünde.</p>
       <div class="cards">${cards}</div>
       <h2>Nasıl çalışılır?</h2>
       <ul>
@@ -243,6 +244,89 @@
     })();
   }
   if ('speechSynthesis' in window) speechSynthesis.getVoices();
+
+
+  // ---------- kelimeler ----------
+  function renderVocab() {
+    const V = window.VOCAB || [];
+    const total = V.reduce((n, g) => n + g.items.length, 0);
+    const vs = { g: 'all', t: 'all', q: '', hide: store.get('vhide', false) };
+    const short = { genel: 'Sınav dili', ornek: 'Örnek vize', deneme1: 'Deneme 1', deneme2: 'Deneme 2', deneme3: 'Deneme 3' };
+    app.innerHTML = `<h1>Kelimeler</h1>
+      <p class="lead">Testlerdeki dinleme metinleri, okuma parçaları, sorular ve writing'den ${total} kelime ve kalıp. "Türkçeyi gizle"yi açıp kendini sına ya da kartlarla çalış.</p>
+      <div class="vctl">
+        <input type="search" id="vq" placeholder="Ara (İngilizce ya da Türkçe)…" autocomplete="off">
+        <div class="chips" id="vg"><button data-g="all" class="on">Tümü</button>${V.map(g => `<button data-g="${g.id}">${esc(short[g.id] || g.title)}</button>`).join('')}</div>
+        <div class="chips" id="vt"><button data-t="all" class="on">Hepsi</button><button data-t="w">Kelimeler</button><button data-t="p">Kalıplar / tabirler</button></div>
+        <div class="vrow"><label><input type="checkbox" id="vhide"${vs.hide ? ' checked' : ''}> Türkçeyi gizle</label>
+          <span class="muted small" id="vcount"></span>
+          <button class="btn small" id="vcards">Kartlarla çalış</button></div>
+      </div>
+      <div id="vlist"></div>`;
+    const list = document.getElementById('vlist');
+    const filtered = () => {
+      const q = norm(vs.q.trim());
+      const out = [];
+      V.forEach(g => {
+        if (vs.g !== 'all' && g.id !== vs.g) return;
+        const items = g.items.filter(([en, tr, k]) => (vs.t === 'all' || k === vs.t) && (!q || norm(en).includes(q) || norm(tr).includes(q)));
+        if (items.length) out.push({ g, items });
+      });
+      return out;
+    };
+    const draw = () => {
+      const groups = filtered();
+      const n = groups.reduce((a, x) => a + x.items.length, 0);
+      document.getElementById('vcount').textContent = `${n} sonuç`;
+      list.className = vs.hide ? 'hide-tr' : '';
+      list.innerHTML = groups.map(({ g, items }) => `<h3>${esc(g.title)}</h3><table class="vocab">${items.map(([en, tr, k]) =>
+        `<tr><td class="en" lang="en">${esc(en)}${k === 'p' ? ' <span class="tag">kalıp</span>' : ''}</td><td class="tr"><span>${esc(tr)}</span></td></tr>`).join('')}</table>`).join('')
+        || '<p class="muted">Sonuç yok.</p>';
+    };
+    document.getElementById('vq').addEventListener('input', e => { vs.q = e.target.value; draw(); });
+    const chips = (id, key) => document.getElementById(id).addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      vs[key] = b.dataset[key];
+      document.querySelectorAll(`#${id} button`).forEach(x => x.classList.toggle('on', x === b));
+      draw();
+    });
+    chips('vg', 'g'); chips('vt', 't');
+    document.getElementById('vhide').addEventListener('change', e => { vs.hide = e.target.checked; store.set('vhide', vs.hide); draw(); });
+    list.addEventListener('click', e => { const tr = e.target.closest('tr'); if (tr && vs.hide) tr.classList.toggle('show'); });
+    document.getElementById('vcards').addEventListener('click', () => {
+      const deck = filtered().flatMap(x => x.items);
+      if (deck.length) cards(deck, draw);
+    });
+    draw();
+  }
+
+  function cards(deck, back) {
+    let order = deck.map((_, i) => i), i = 0, flipped = false, rev = store.get('vrev', false);
+    const shuffle = () => { for (let k = order.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [order[k], order[j]] = [order[j], order[k]]; } i = 0; };
+    shuffle();
+    app.innerHTML = `<a href="#" id="cback" class="small">← Listeye dön</a><h1>Kartlar</h1>
+      <div class="vrow"><span class="muted" id="cpos"></span>
+        <label><input type="checkbox" id="crev"${rev ? ' checked' : ''}> Türkçeden İngilizceye</label></div>
+      <div class="flash" id="card" tabindex="0"><div class="front" id="cfront"></div><div class="back" id="cbackside"></div><div class="hint muted small" id="chint">Çevirmek için dokun</div></div>
+      <div class="actions"><button class="btn" id="cprev">← Önceki</button><button class="btn main" id="cnext">Sonraki →</button><button class="btn" id="cshuf">Karıştır</button></div>`;
+    const show = () => {
+      const [en, tr] = deck[order[i]];
+      document.getElementById('cpos').textContent = `${i + 1} / ${deck.length}`;
+      document.getElementById('cfront').textContent = rev ? tr : en;
+      document.getElementById('cfront').lang = rev ? 'tr' : 'en';
+      const b = document.getElementById('cbackside');
+      b.textContent = rev ? en : tr; b.hidden = !flipped;
+      document.getElementById('chint').hidden = flipped;
+    };
+    const go = d => { i = (i + d + order.length) % order.length; flipped = false; show(); };
+    document.getElementById('card').addEventListener('click', () => { flipped = !flipped; show(); });
+    document.getElementById('cnext').addEventListener('click', () => go(1));
+    document.getElementById('cprev').addEventListener('click', () => go(-1));
+    document.getElementById('cshuf').addEventListener('click', () => { shuffle(); flipped = false; show(); });
+    document.getElementById('crev').addEventListener('change', e => { rev = e.target.checked; store.set('vrev', rev); flipped = false; show(); });
+    document.getElementById('cback').addEventListener('click', e => { e.preventDefault(); renderVocab(); });
+    show();
+  }
 
   // ---------- writing ----------
   function norm(s) { return s.replace(/İ/g, 'I').replace(/ı/g, 'i').toLowerCase(); }

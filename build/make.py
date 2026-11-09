@@ -11,6 +11,8 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "build"))
 from content import EXAMS, NARRATOR  # noqa: E402
+from vocab import VOCAB  # noqa: E402
+import re
 
 errors = []
 
@@ -57,6 +59,40 @@ for ex in EXAMS:
             del s["voices"]
     site.append(out)
 
+
+# ---- kelimeler ----
+corpus = {}
+for ex in EXAMS:
+    parts = []
+    for s in ex["listening"]["sections"]:
+        parts += [s["instr"]] + [t for _, t in s.get("script", [])] + [q["q"] + " " + " ".join(q["opts"]) for q in s["questions"]]
+    for t in ex["reading"]:
+        parts += t["body"] + [q["q"] + " " + " ".join(q["opts"]) for q in t["questions"]]
+    w = ex["writing"]
+    parts += [w["model"]] + [r[1] for r in w["info"]]
+    corpus[ex["id"]] = re.sub(r"\s+", " ", " ".join(parts)).lower().replace("’", "'")
+vocab_out = []
+for gid, title, block in VOCAB:
+    kind, items = "w", []
+    for line in block.strip().splitlines():
+        line = line.strip()
+        if line in ("[kelime]", "[tabir]"):
+            kind = "w" if line == "[kelime]" else "p"
+            continue
+        en, tr = [x.strip() for x in line.split(" = ", 1)]
+        items.append([en, tr, kind])
+        if gid in corpus:
+            m = re.match(r"(.*?)\s*\((.*)\)$", en)
+            forms = [m.group(1), m.group(2)] if m else [en]
+            if not any(f.lower().rstrip(".?") in corpus[gid] for f in forms):
+                print(f"UYARI: '{en}' {gid} metninde yok")
+    seen = Counter(i[0].lower() for i in items)
+    for k, v in seen.items():
+        if v > 1:
+            print(f"UYARI: '{k}' {gid} içinde {v} kez")
+    vocab_out.append({"id": gid, "title": title, "items": items})
+print("kelime:", sum(len(g["items"]) for g in vocab_out))
+
 if errors:
     print("\n".join("HATA: " + e for e in errors))
     sys.exit(1)
@@ -64,6 +100,7 @@ if errors:
 with open(os.path.join(ROOT, "assets", "data.js"), "w", encoding="utf8") as f:
     f.write("// build/make.py tarafından üretildi. Elle düzenleme: build/content.py\n")
     f.write("window.EXAMS = " + json.dumps(site, ensure_ascii=False, indent=1) + ";\n")
+    f.write("window.VOCAB = " + json.dumps(vocab_out, ensure_ascii=False) + ";\n")
 with open(os.path.join(ROOT, "audio-src", "scripts.json"), "w", encoding="utf8") as f:
     json.dump({"narrator": NARRATOR, "items": audio}, f, ensure_ascii=False, indent=1)
 print("OK: assets/data.js, audio-src/scripts.json")
