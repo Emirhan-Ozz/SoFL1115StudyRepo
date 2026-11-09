@@ -1,0 +1,354 @@
+{
+ "narrator": "en-GB-RyanNeural",
+ "items": [
+  {
+   "file": "audio/deneme1-s1.mp3",
+   "kind": "dialog",
+   "intro": "Section one. Are the sentences true or false? Listen to Emma talking to the man at the Riverside Sports Centre. Choose the correct option.",
+   "voices": {
+    "Man": "en-GB-ThomasNeural",
+    "Emma": "en-GB-LibbyNeural"
+   },
+   "script": [
+    [
+     "Man",
+     "Good morning. Welcome to Riverside Sports Centre. Can I help you?"
+    ],
+    [
+     "Emma",
+     "Hello. Yes, I'd like some information about tennis lessons, please."
+    ],
+    [
+     "Man",
+     "Of course. We have tennis lessons for children, teenagers and adults. How old are you?"
+    ],
+    [
+     "Emma",
+     "I'm sixteen."
+    ],
+    [
+     "Man",
+     "OK, so you can join the teenager group. That's for people from thirteen to seventeen."
+    ],
+    [
+     "Emma",
+     "Great. When are the lessons?"
+    ],
+    [
+     "Man",
+     "The teenager group has lessons on Tuesdays and Fridays."
+    ],
+    [
+     "Emma",
+     "What time?"
+    ],
+    [
+     "Man",
+     "From half past four to six o'clock in the afternoon."
+    ],
+    [
+     "Emma",
+     "That's perfect. I finish school at half past three. Are there any places in the group?"
+    ],
+    [
+     "Man",
+     "Let me check. Yes, there are three places."
+    ],
+    [
+     "Emma",
+     "Good. How much are the lessons?"
+    ],
+    [
+     "Man",
+     "They're twenty pounds a month. But students with a student card pay fifteen pounds."
+    ],
+    [
+     "Emma",
+     "Oh, I have a student card."
+    ],
+    [
+     "Man",
+     "Great. And on Sunday mornings there's a free tennis game for all the groups."
+    ],
+    [
+     "Emma",
+     "Do I need my own racket?"
+    ],
+    [
+     "Man",
+     "No, you don't. We have rackets here. But you need sports shoes."
+    ],
+    [
+     "Emma",
+     "OK. How can I join?"
+    ],
+    [
+     "Man",
+     "Just fill in this form here at the desk, and bring a copy of your student card."
+    ],
+    [
+     "Emma",
+     "Can I start this week?"
+    ],
+    [
+     "Man",
+     "Sorry, this week is full. The new lessons start next Tuesday."
+    ],
+    [
+     "Emma",
+     "OK. Thank you very much."
+    ]
+   ]
+  },
+  {
+   "file": "audio/deneme1-s2.mp3",
+   "kind": "speakers",
+   "intro": "Section two. Listen to three people talking about themselves. Choose the correct option.",
+   "voices": {
+    "Speaker 1": "en-GB-SoniaNeural",
+    "Speaker 2": "en-US-GuyNeural",
+    "Speaker 3": "en-IN-PrabhatNeural"
+   },
+   "script": [
+    [
+     "Speaker 1",
+     "Hi, I'm Sophie. I'm a nurse at a big hospital in Manchester. I work at night, so my day is a bit different. I start work at eight o'clock in the evening and I finish at seven in the morning. When I get home, I have breakfast with my children, and then I go to bed. I sleep until two o'clock in the afternoon. I'm tired sometimes, but I love my job."
+    ],
+    [
+     "Speaker 2",
+     "My name is Kevin and I'm from Canada, but I live in Dublin now. I'm a teacher. I teach maths at a secondary school. I get up at half past six every day and I go to work by bike. It takes twenty minutes. I don't have lunch at school because I go home for lunch. My flat is very near. In the evening, I check my students' homework and I watch TV."
+    ],
+    [
+     "Speaker 3",
+     "Hello, I'm Raj. I'm a chef in an Indian restaurant in London. The restaurant opens at twelve o'clock, but I start work at ten o'clock because I prepare the food. I work six days a week. I don't work on Mondays. On Mondays I usually stay at home and cook for my family. My wife says I'm a good cook, but my children prefer pizza!"
+    ]
+   ]
+  },
+  {
+   "file": "audio/deneme2-s1.mp3",
+   "kind": "dialog",
+   "intro": "Section one. Are the sentences true or false? Listen to Mark talking to the woman at the Sunrise Language School. Choose the correct option.",
+   "voices": {
+    "Woman": "en-GB-SoniaNeural",
+    "Mark": "en-US-ChristopherNeural"
+   },
+   "script": [
+    [
+     "Woman",
+     "Good afternoon, Sunrise Language School. How can I help you?"
+    ],
+    [
+     "Mark",
+     "Hi. I want to learn Spanish. Do you have Spanish classes?"
+    ],
+    [
+     "Woman",
+     "Yes, we do. We teach five languages here: Spanish, French, German, Italian and Japanese."
+    ],
+    [
+     "Mark",
+     "Great. I'm a beginner. I don't speak any Spanish."
+    ],
+    [
+     "Woman",
+     "No problem. We have a beginner class. It's on Wednesday evenings."
+    ],
+    [
+     "Mark",
+     "Only on Wednesdays?"
+    ],
+    [
+     "Woman",
+     "No, sorry. On Wednesdays and Saturdays. On Wednesdays it's from seven to nine in the evening, and on Saturdays it's from ten to twelve in the morning."
+    ],
+    [
+     "Mark",
+     "OK. How many students are there in a class?"
+    ],
+    [
+     "Woman",
+     "There are usually twelve students in each class, but the beginner class has only eight students now."
+    ],
+    [
+     "Mark",
+     "Good. Who is the teacher?"
+    ],
+    [
+     "Woman",
+     "Her name is Carmen. She's from Madrid. She's a very good teacher."
+    ],
+    [
+     "Mark",
+     "And how much is the course?"
+    ],
+    [
+     "Woman",
+     "It's ninety euros a month. The books are free."
+    ],
+    [
+     "Mark",
+     "How long is the course?"
+    ],
+    [
+     "Woman",
+     "It's three months long. It starts on the first of October."
+    ],
+    [
+     "Mark",
+     "How can I register?"
+    ],
+    [
+     "Woman",
+     "You can register online on our website, or you can come to the school. Please bring your ID card."
+    ],
+    [
+     "Mark",
+     "Thank you very much. I'll come to the school on Monday."
+    ]
+   ]
+  },
+  {
+   "file": "audio/deneme2-s2.mp3",
+   "kind": "speakers",
+   "intro": "Section two. Listen to three people talking about themselves. Choose the correct option.",
+   "voices": {
+    "Speaker 1": "en-US-JennyNeural",
+    "Speaker 2": "en-GB-RyanNeural",
+    "Speaker 3": "en-AU-NatashaNeural"
+   },
+   "script": [
+    [
+     "Speaker 1",
+     "Hi, I'm Olivia. I live in New York with my husband and our baby daughter. We live in a small flat on the tenth floor of a tall building. The flat has two bedrooms, a living room and a small kitchen. There isn't a garden, but there's a big park near our building. We go there every afternoon."
+    ],
+    [
+     "Speaker 2",
+     "My name is Tom. I'm a farmer and I live in a big old house in the countryside in Wales. The house has five bedrooms because I have four children. We have a big garden with lots of trees. The nearest shop is fifteen kilometres away, so we drive to the town once a week to buy food."
+    ],
+    [
+     "Speaker 3",
+     "Hello, I'm Grace. I'm from Australia, but I'm a student in London now. I live in a student house with four other students. I have my own bedroom, but we share the kitchen and the bathroom. My housemates are from Brazil, Japan, Germany and Italy. We usually speak English at home. Every Friday we cook dinner together. It's my favourite evening of the week."
+    ]
+   ]
+  },
+  {
+   "file": "audio/deneme3-s1.mp3",
+   "kind": "dialog",
+   "intro": "Section one. Are the sentences true or false? Listen to Anna talking to the man at the Greenwood City Library. Choose the correct option.",
+   "voices": {
+    "Man": "en-US-GuyNeural",
+    "Anna": "en-US-AriaNeural"
+   },
+   "script": [
+    [
+     "Man",
+     "Hello. Can I help you?"
+    ],
+    [
+     "Anna",
+     "Hi. I want to become a member of the library."
+    ],
+    [
+     "Man",
+     "Sure. Do you live in Greenwood?"
+    ],
+    [
+     "Anna",
+     "Yes, I live in Park Road."
+    ],
+    [
+     "Man",
+     "Good. Membership is free for people who live in the city. How old are you?"
+    ],
+    [
+     "Anna",
+     "I'm seventeen."
+    ],
+    [
+     "Man",
+     "OK. With your card, you can borrow six books at the same time."
+    ],
+    [
+     "Anna",
+     "For how long?"
+    ],
+    [
+     "Man",
+     "For three weeks."
+    ],
+    [
+     "Anna",
+     "Can I borrow DVDs too?"
+    ],
+    [
+     "Man",
+     "Yes, you can borrow DVDs, but only two at a time, and only for one week."
+    ],
+    [
+     "Anna",
+     "What are the opening hours?"
+    ],
+    [
+     "Man",
+     "We're open from nine in the morning to eight in the evening, Monday to Saturday. On Sundays we're closed."
+    ],
+    [
+     "Anna",
+     "Is there a place to study?"
+    ],
+    [
+     "Man",
+     "Yes, there's a quiet study room on the second floor. There are also computers on the first floor. You can use them for one hour a day, for free."
+    ],
+    [
+     "Anna",
+     "Great. Is there a café?"
+    ],
+    [
+     "Man",
+     "No, there isn't, but you can drink water in the study room."
+    ],
+    [
+     "Anna",
+     "OK. What do I need for the card?"
+    ],
+    [
+     "Man",
+     "Just fill in this form, and show me something with your address on it, like a letter or a bill. And we take your photo here for the card."
+    ],
+    [
+     "Anna",
+     "Oh, so I don't need to bring a photo."
+    ],
+    [
+     "Man",
+     "That's right."
+    ]
+   ]
+  },
+  {
+   "file": "audio/deneme3-s2.mp3",
+   "kind": "speakers",
+   "intro": "Section two. Listen to three people talking about themselves. Choose the correct option.",
+   "voices": {
+    "Speaker 1": "en-IE-ConnorNeural",
+    "Speaker 2": "en-GB-LibbyNeural",
+    "Speaker 3": "en-IN-PrabhatNeural"
+   },
+   "script": [
+    [
+     "Speaker 1",
+     "Hi, I'm Liam and I'm from Dublin. I'm a bank clerk, so I sit at a desk all day. That's why I love doing sport in my free time. I go running three times a week, and on Saturdays I play rugby with my friends. I don't watch much TV. I think it's boring."
+    ],
+    [
+     "Speaker 2",
+     "My name is Chloe. I'm a student in Oxford and I study music. I play the piano and the guitar. In my free time, I play in a band with three friends. We play in small cafés on Friday nights. I also love reading. I usually read before I go to sleep."
+    ],
+    [
+     "Speaker 3",
+     "Hello, my name is Arjun. I'm from Mumbai, but I live in Berlin now. I'm a software engineer. In my free time, I love cooking. I often cook Indian food for my German friends. They love it, but sometimes it's too spicy for them! I'm also learning German. I go to a language class two evenings a week, but my German isn't very good yet."
+    ]
+   ]
+  }
+ ]
+}
