@@ -180,7 +180,7 @@
             }
             ratio = pass / q.tests.length;
             box.innerHTML = `<table class="tt"><tr><th>Girdi</th><th>Beklenen</th><th>Senin çıktın</th><th></th></tr>${rows.join('')}</table>
-              ${rows.some(r => r.includes('✓*')) ? '<p class="muted small">✓* = değer doğru ama fazladan yazı var (ör. "Toplam: 7"). Sınavda sorun olmaz, burada da doğru sayıldı.</p>' : ''}`;
+              ${rows.some(r => r.includes('✓*')) ? '<p class="muted small">✓* = değer doğru ama fazladan yazı var (ör. "Toplam: 7"); burada doğru sayıldı.</p>' : ''}`;
             msg = `${pass} / ${q.tests.length} test geçti.`;
           } catch (err) {
             box.innerHTML = `<p class="muted small">Python yüklenemedi (internet bağlantısı gerekli). Çözümü göster ile kendin karşılaştır.</p>`;
