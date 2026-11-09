@@ -104,3 +104,14 @@ with open(os.path.join(ROOT, "assets", "data.js"), "w", encoding="utf8") as f:
 with open(os.path.join(ROOT, "audio-src", "scripts.json"), "w", encoding="utf8") as f:
     json.dump({"narrator": NARRATOR, "items": audio}, f, ensure_ascii=False, indent=1)
 print("OK: assets/data.js, audio-src/scripts.json")
+
+# ---- önbellek kırıcı: index.html'deki assets bağlantılarına ?v=<özet> ekle ----
+import hashlib
+idx = os.path.join(ROOT, "index.html")
+html = open(idx, encoding="utf8").read()
+def _v(m):
+    f = os.path.join(ROOT, "assets", m.group(1))
+    return f'assets/{m.group(1)}?v={hashlib.sha1(open(f, "rb").read()).hexdigest()[:8]}'
+html = re.sub(r"assets/([\w.-]+\.(?:js|css))(?:\?v=\w+)?", _v, html)
+open(idx, "w", encoding="utf8").write(html)
+print("index.html sürüm etiketleri güncellendi")
