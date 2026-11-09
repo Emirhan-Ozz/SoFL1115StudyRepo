@@ -1,0 +1,895 @@
+// build/make_py.py tarafından üretildi. Elle düzenleme: build/py_content.py
+window.PY = {
+ "note": "Puanlar varsayım: hocanın verdiği bilgiye göre sınav 10 soru (2 test, boşluk doldurma, 3–4 satırlık for/while/if-else kodları ve 1 akış diyagramı sorusu). Dağılım: test 2×5, boşluk 4×10, kod 3×10, akış diyagramı 20 = 100.",
+ "points": {
+  "mc": 5,
+  "fill": 10,
+  "code": 10,
+  "flow": 20
+ },
+ "exams": [
+  {
+   "id": "c1",
+   "title": "Çalışma 1",
+   "desc": "Değişken adları, // ve %, range, while, tip; büyük sayıyı bulan akış diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "degisken",
+     "q": "Aşağıdakilerden hangisi Python'da geçerli bir değişken adıdır?",
+     "opts": [
+      "2sayi",
+      "toplam_not",
+      "ilk-not",
+      "my var"
+     ],
+     "a": 1,
+     "exp": "Değişken adı harf ya da _ ile başlar; harf, rakam ve _ içerebilir. `2sayi` rakamla başlıyor, `ilk-not` tire, `my var` boşluk içeriyor."
+    },
+    {
+     "t": "mc",
+     "topic": "operator",
+     "q": "Kodun çıktısı nedir?",
+     "code": "x = 17\nprint(x // 5, x % 5)",
+     "opts": [
+      "3.4 2",
+      "2 3",
+      "3 2",
+      "3 3"
+     ],
+     "a": 2,
+     "exp": "`//` bölümün tam kısmı: 17 // 5 = 3. `%` kalan: 17 % 5 = 2."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kod 1'den 10'a kadar (10 dahil) sayıları alt alta yazsın. Boşluğa ne gelmeli?",
+     "code": "for i in range(1, ____):\n    print(i)",
+     "ans": [
+      "11"
+     ],
+     "out": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+     "exp": "range'de bitiş değeri dahil değildir. 10'un da yazılması için bitiş 11 olmalı."
+    },
+    {
+     "t": "fill",
+     "topic": "if",
+     "q": "Kod girilen sayı çiftse \"Çift\", tekse \"Tek\" yazsın. Boşluğa hangi operatör gelmeli?",
+     "code": "sayi = int(input())\nif sayi ____ 2 == 0:\n    print(\"Çift\")\nelse:\n    print(\"Tek\")",
+     "ans": [
+      "%"
+     ],
+     "inp": [
+      "8"
+     ],
+     "out": "Çift",
+     "exp": "`%` kalanı verir. Bir sayının 2'ye bölümünden kalan 0 ise sayı çifttir."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kod 1'den 5'e kadar sayıları yazsın. Döngünün sonsuza gitmemesi için boşluğa ne gelmeli?",
+     "code": "i = 1\nwhile i <= 5:\n    print(i)\n    i ____ 1",
+     "ans": [
+      "+="
+     ],
+     "out": "1\n2\n3\n4\n5",
+     "exp": "`i += 1`, `i = i + 1` demektir. Sayaç artmazsa `i <= 5` hep True kalır ve döngü bitmez."
+    },
+    {
+     "t": "fill",
+     "topic": "degisken",
+     "q": "Çıktının `<class 'float'>` olması için boşluğa hangi fonksiyon gelmeli?",
+     "code": "x = 3.5\nprint(____(x))",
+     "ans": [
+      "type"
+     ],
+     "out": "<class 'float'>",
+     "exp": "`type()` bir değerin veri tipini verir. 3.5 ondalıklı olduğu için float."
+    },
+    {
+     "t": "code",
+     "topic": "degisken",
+     "q": "Kullanıcıdan iki tam sayı al ve toplamlarını yazdır.",
+     "sol": "a = int(input())\nb = int(input())\nprint(a + b)",
+     "tests": [
+      {
+       "inp": [
+        "3",
+        "4"
+       ],
+       "out": "7"
+      },
+      {
+       "inp": [
+        "10",
+        "-2"
+       ],
+       "out": "8"
+      }
+     ],
+     "exp": "`input()` metin döndürür; toplama yapabilmek için `int()` ile tam sayıya çevirmek gerekir. Çevirmezsen \"3\" + \"4\" = \"34\" olur."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan bir sayı al. Sayı 0'dan büyükse `Pozitif`, değilse `Pozitif değil` yazdır.",
+     "sol": "sayi = int(input())\nif sayi > 0:\n    print(\"Pozitif\")\nelse:\n    print(\"Pozitif değil\")",
+     "tests": [
+      {
+       "inp": [
+        "5"
+       ],
+       "out": "Pozitif"
+      },
+      {
+       "inp": [
+        "-3"
+       ],
+       "out": "Pozitif değil"
+      },
+      {
+       "inp": [
+        "0"
+       ],
+       "out": "Pozitif değil"
+      }
+     ],
+     "exp": "0 pozitif değildir, bu yüzden koşul `>= 0` değil `> 0` olmalı."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "for döngüsüyle 1'den 5'e kadar sayıların karelerini alt alta yazdır (1, 4, 9, 16, 25).",
+     "sol": "for i in range(1, 6):\n    print(i ** 2)",
+     "tests": [
+      {
+       "inp": [],
+       "out": "1\n4\n9\n16\n25"
+      }
+     ],
+     "exp": "`range(1, 6)` 1..5 verir. Kare için `i ** 2` ya da `i * i`."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Girilen iki sayıdan büyük olanı ekrana yazan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "a>b",
+       "b<a"
+      ],
+      [
+       "a"
+      ]
+     ],
+     "labels": [
+      "Karar kutusundaki koşul",
+      "E (evet) dalında yazdırılan"
+     ],
+     "exp": "Karar (baklava) kutusunda koşul yazılır: A>B. Koşul doğruysa (E) büyük olan A, değilse (H) B yazdırılır.",
+     "svg": "<svg viewBox=\"0 0 460 424\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">A,B</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,146 240,176 170,206 100,176\"/><text x=\"170\" y=\"181\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,206 L170,238\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"176\" y=\"220\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><path d=\"M115.0,234 H225.0 V266 Q197.5,258 170,266 T115.0,266 Z\"/><text x=\"170\" y=\"257\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M240,176 L360,176 L360,238\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"246\" y=\"170\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M305.0,234 H415.0 V266 Q387.5,258 360,266 T305.0,266 Z\"/><text x=\"360\" y=\"257\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">B</text><circle cx=\"170\" cy=\"310\" r=\"6\"/><path d=\"M170,266 L170,304\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M360,266 L360,310 L176,310\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M170,316 L170,366\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"384\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"389\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 424\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">A,B</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,146 240,176 170,206 100,176\"/><text x=\"170\" y=\"181\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">A&gt;B</text><path d=\"M170,206 L170,238\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"176\" y=\"220\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><path d=\"M115.0,234 H225.0 V266 Q197.5,258 170,266 T115.0,266 Z\"/><text x=\"170\" y=\"257\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">A</text><path d=\"M240,176 L360,176 L360,238\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"246\" y=\"170\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M305.0,234 H415.0 V266 Q387.5,258 360,266 T305.0,266 Z\"/><text x=\"360\" y=\"257\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">B</text><circle cx=\"170\" cy=\"310\" r=\"6\"/><path d=\"M170,266 L170,304\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M360,266 L360,310 L176,310\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M170,316 L170,366\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"384\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"389\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "title": "Çalışma 2",
+   "desc": "İşlem önceliği, şekiller, geri sayan range, else, and, while; 1–5 yazan döngü diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "operator",
+     "q": "Kodun çıktısı nedir?",
+     "code": "print(2 ** 3 + 10 / 5)",
+     "opts": [
+      "12.0",
+      "10",
+      "8.0",
+      "10.0"
+     ],
+     "a": 3,
+     "exp": "Önce üs: 2 ** 3 = 8. Sonra bölme: 10 / 5 = 2.0 (`/` her zaman float verir). 8 + 2.0 = 10.0. Sonuç float olduğu için 10 değil 10.0."
+    },
+    {
+     "t": "mc",
+     "topic": "akis",
+     "q": "Akış diyagramında karar alma (koşul) adımı hangi şekille gösterilir?",
+     "opts": [
+      "Eşkenar dörtgen (baklava)",
+      "Dikdörtgen",
+      "Paralelkenar",
+      "Elips"
+     ],
+     "a": 0,
+     "exp": "Elips: başla/bitir, paralelkenar: veri girişi, dikdörtgen: işlem/hesaplama, eşkenar dörtgen: karar."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kod 10'dan 1'e geriye doğru sayıları yazsın. Boşluğa ne gelmeli?",
+     "code": "for i in range(10, 0, ____):\n    print(i)",
+     "ans": [
+      "-1"
+     ],
+     "out": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+     "exp": "Üçüncü değer artış miktarıdır. Geriye saymak için -1. Bitiş (0) dahil olmadığından 1'de durur."
+    },
+    {
+     "t": "fill",
+     "topic": "if",
+     "q": "Not 50 ve üstüyse \"Geçti\", değilse \"Kaldı\" yazsın. Boşluğa ne gelmeli?",
+     "code": "not_ = int(input())\nif not_ >= 50:\n    print(\"Geçti\")\n____:\n    print(\"Kaldı\")",
+     "ans": [
+      "else"
+     ],
+     "inp": [
+      "30"
+     ],
+     "out": "Kaldı",
+     "exp": "if koşulu sağlanmadığında çalışan blok `else:`'tir. else koşul almaz."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "Sayı 1 ile 100 arasındaysa (ikisi dahil) \"Aralıkta\" yazsın. Boşluğa hangi mantıksal operatör gelmeli?",
+     "code": "sayi = int(input())\nif sayi >= 1 ____ sayi <= 100:\n    print(\"Aralıkta\")",
+     "ans": [
+      "and"
+     ],
+     "inp": [
+      "50"
+     ],
+     "out": "Aralıkta",
+     "exp": "İki koşulun da aynı anda doğru olması gerekiyor: `and`. `or` olsaydı her sayı aralıkta sayılırdı."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kodun çıktısı 3, 2, 1 (alt alta) olsun. Boşluğa hangi karşılaştırma operatörü gelmeli?",
+     "code": "n = 3\nwhile n ____ 0:\n    print(n)\n    n -= 1",
+     "ans": [
+      ">",
+      "!="
+     ],
+     "out": "3\n2\n1",
+     "exp": "n 0'dan büyük olduğu sürece yazdırır. `>=` olsaydı 0 da yazılırdı."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan bir sayı al. 10'dan büyükse `Büyük`, değilse `Küçük` yazdır.",
+     "sol": "sayi = int(input())\nif sayi > 10:\n    print(\"Büyük\")\nelse:\n    print(\"Küçük\")",
+     "tests": [
+      {
+       "inp": [
+        "15"
+       ],
+       "out": "Büyük"
+      },
+      {
+       "inp": [
+        "10"
+       ],
+       "out": "Küçük"
+      },
+      {
+       "inp": [
+        "3"
+       ],
+       "out": "Küçük"
+      }
+     ],
+     "exp": "10, 10'dan büyük değildir; bu yüzden 10 girilince `Küçük` yazmalı."
+    },
+    {
+     "t": "code",
+     "topic": "while",
+     "q": "while döngüsüyle 1'den 5'e kadar sayıları alt alta yazdır.",
+     "sol": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1",
+     "tests": [
+      {
+       "inp": [],
+       "out": "1\n2\n3\n4\n5"
+      }
+     ],
+     "exp": "while'da sayacı döngüden önce başlat (`i = 1`), döngü içinde artır (`i += 1`). Artırmayı unutursan döngü sonsuza gider."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "Kullanıcıdan bir sayı (n) al ve for döngüsüyle `Merhaba` kelimesini n kez alt alta yazdır.",
+     "sol": "n = int(input())\nfor i in range(n):\n    print(\"Merhaba\")",
+     "tests": [
+      {
+       "inp": [
+        "3"
+       ],
+       "out": "Merhaba\nMerhaba\nMerhaba"
+      },
+      {
+       "inp": [
+        "1"
+       ],
+       "out": "Merhaba"
+      }
+     ],
+     "exp": "`range(n)` 0..n-1 üretir, yani tam n tekrar."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "1'den 5'e kadar sayıları ekrana yazan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "i=1"
+      ],
+      [
+       "i=i+1",
+       "i+=1",
+       "i=1+i"
+      ],
+      [
+       "i<=5",
+       "i<6",
+       "5>=i"
+      ]
+     ],
+     "labels": [
+      "Başlangıç ataması",
+      "Sayacı artıran işlem",
+      "Döngü koşulu"
+     ],
+     "exp": "Sayaç 1'den başlar, her turda yazdırılır ve 1 artar. Koşul (i<=5) doğruysa (E) yazdırma adımına geri dönülür, yanlışsa (H) bitirilir.",
+     "svg": "<svg viewBox=\"0 0 460 414\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,120 L170,150\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,146 H225.0 V178 Q197.5,170 170,178 T115.0,178 Z\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i</text><path d=\"M170,178 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"208\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,270 240,300 170,330 100,300\"/><text x=\"170\" y=\"305\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M100,300 L40,300 L40,168 L100,168\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"294\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"344\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,330 L170,356\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"374\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"379\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 414\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=1</text><path d=\"M170,120 L170,150\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,146 H225.0 V178 Q197.5,170 170,178 T115.0,178 Z\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i</text><path d=\"M170,178 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"208\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=i+1</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,270 240,300 170,330 100,300\"/><text x=\"170\" y=\"305\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i&lt;=5</text><path d=\"M100,300 L40,300 L40,168 L100,168\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"294\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"344\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,330 L170,356\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"374\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"379\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "title": "Çalışma 3",
+   "desc": "bool, range adımı, ==, elif, n+1, while sayacı; dikdörtgen alan-çevre diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "degisken",
+     "q": "Aşağıdakilerden hangisi bool (mantıksal) tipinde bir değerdir?",
+     "opts": [
+      "True",
+      "\"True\"",
+      "1.0",
+      "\"1\""
+     ],
+     "a": 0,
+     "exp": "Tırnaksız `True` bool'dur. Tırnak içindeki \"True\" bir metindir (str), 1.0 float'tır."
+    },
+    {
+     "t": "mc",
+     "topic": "for",
+     "q": "Kodun çıktısı nedir?",
+     "code": "for i in range(2, 11, 3):\n    print(i, end=\" \")",
+     "opts": [
+      "2 5 8 11",
+      "3 6 9",
+      "2 5 8",
+      "2 4 6 8 10"
+     ],
+     "a": 2,
+     "exp": "2'den başlar, 3'er artar: 2, 5, 8. Sonraki 11 olurdu ama bitiş değeri (11) dahil değil."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "a ile b'nin eşit olup olmadığını kontrol eden kod `True` yazsın. Boşluğa hangi operatör gelmeli?",
+     "code": "a = 7\nb = 7\nprint(a ____ b)",
+     "ans": [
+      "=="
+     ],
+     "out": "True",
+     "exp": "Eşitlik karşılaştırması `==`'dir. Tek `=` atama operatörüdür, burada hata verir."
+    },
+    {
+     "t": "fill",
+     "topic": "if",
+     "q": "Puan 85 ve üstüyse 5, 70 ve üstüyse 4, değilse \"3 veya altı\" yazsın. Boşluğa ne gelmeli?",
+     "code": "puan = int(input())\nif puan >= 85:\n    print(\"5\")\n____ puan >= 70:\n    print(\"4\")\nelse:\n    print(\"3 veya altı\")",
+     "ans": [
+      "elif"
+     ],
+     "inp": [
+      "75"
+     ],
+     "out": "4",
+     "exp": "İkinci ve sonraki koşullar `elif` (else if) ile yazılır. Koşul alan bir blok `else` olamaz."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kod 1'den n'e kadar (n dahil) sayıların toplamını yazsın. Boşluğa ne gelmeli?",
+     "code": "n = int(input())\ntoplam = 0\nfor i in range(1, ____):\n    toplam += i\nprint(toplam)",
+     "ans": [
+      "n+1",
+      "1+n"
+     ],
+     "inp": [
+      "4"
+     ],
+     "out": "10",
+     "exp": "Bitiş dahil olmadığı için n'in de toplanması için `n+1` yazılır (Lab-2'deki `sayi+1` gibi)."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kod \"Python\" kelimesini 3 kez yazsın. Boşluğa ne gelmeli?",
+     "code": "sayac = 0\nwhile sayac < 3:\n    print(\"Python\")\n    sayac ____",
+     "ans": [
+      "+= 1",
+      "= sayac + 1",
+      "= 1 + sayac"
+     ],
+     "out": "Python\nPython\nPython",
+     "exp": "Sayaç her turda 1 artmalı: `sayac += 1` ya da `sayac = sayac + 1`. 0, 1, 2 için çalışır = 3 kez."
+    },
+    {
+     "t": "code",
+     "topic": "degisken",
+     "q": "Kullanıcıdan vize ve final notunu al. Ortalama = vize × 0.4 + final × 0.6. Ortalamayı yazdır.",
+     "sol": "vize = float(input())\nfinal = float(input())\nprint(vize * 0.4 + final * 0.6)",
+     "tests": [
+      {
+       "inp": [
+        "50",
+        "70"
+       ],
+       "out": "62.0"
+      },
+      {
+       "inp": [
+        "80",
+        "90"
+       ],
+       "out": "86.0"
+      }
+     ],
+     "exp": "Notları `float(input())` ile al. Çarpma toplama'dan önce yapılır, bu yüzden parantez gerekmez."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan bir sayı al. Sayı 3'e tam bölünüyorsa `Bölünür`, bölünmüyorsa `Bölünmez` yazdır.",
+     "sol": "sayi = int(input())\nif sayi % 3 == 0:\n    print(\"Bölünür\")\nelse:\n    print(\"Bölünmez\")",
+     "tests": [
+      {
+       "inp": [
+        "9"
+       ],
+       "out": "Bölünür"
+      },
+      {
+       "inp": [
+        "10"
+       ],
+       "out": "Bölünmez"
+      },
+      {
+       "inp": [
+        "0"
+       ],
+       "out": "Bölünür"
+      }
+     ],
+     "exp": "Tam bölünme = kalan 0: `sayi % 3 == 0`."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "for döngüsüyle 10'dan 1'e geriye doğru sayıları alt alta yazdır.",
+     "sol": "for i in range(10, 0, -1):\n    print(i)",
+     "tests": [
+      {
+       "inp": [],
+       "out": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1"
+      }
+     ],
+     "exp": "Geriye saymak için artış -1, bitiş 0 (dahil değil, 1'de durur)."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Kenarları girilen dikdörtgenin alanını ve çevresini yazan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "a,b",
+       "b,a"
+      ],
+      [
+       "alan=a*b",
+       "alan=b*a"
+      ],
+      [
+       "cevre=2*(a+b)",
+       "cevre=2*a+2*b",
+       "cevre=(a+b)*2",
+       "cevre=a+a+b+b",
+       "cevre=2*(b+a)"
+      ]
+     ],
+     "labels": [
+      "Veri girişi (kenarlar a ve b)",
+      "Alan hesabı",
+      "Çevre hesabı"
+     ],
+     "exp": "Doğrusal akış: giriş → işlem → çıkış. Veri girişi paralelkenarda, hesaplamalar dikdörtgende, sonuç yazdırma şeklinde.",
+     "svg": "<svg viewBox=\"0 0 460 390\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"208\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M170,244 L170,274\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M110.0,270 H230.0 V302 Q200.0,294 170,302 T110.0,302 Z\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">alan,cevre</text><path d=\"M170,302 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"350\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 390\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">a,b</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">alan=a*b</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"208\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">cevre=2*(a+b)</text><path d=\"M170,244 L170,274\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M110.0,270 H230.0 V302 Q200.0,294 170,302 T110.0,302 Z\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">alan,cevre</text><path d=\"M170,302 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"350\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  },
+  {
+   "id": "c4",
+   "title": "Çalışma 4",
+   "desc": "Dinamik tip, not/or, range(5), elif, 0 girilene kadar while, //; 1'den n'e toplam diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "degisken",
+     "q": "Kodun çıktısı nedir?",
+     "code": "x = 10\nx = \"on\"\nprint(type(x))",
+     "opts": [
+      "<class 'int'>",
+      "Hata verir",
+      "<class 'float'>",
+      "<class 'str'>"
+     ],
+     "a": 3,
+     "exp": "Python'da değişkenin tipi atanan son değere göre değişebilir. Son değer \"on\" bir metin (str)."
+    },
+    {
+     "t": "mc",
+     "topic": "operator",
+     "q": "Kodun çıktısı nedir?",
+     "code": "print(not (5 > 3) or 2 == 2)",
+     "opts": [
+      "False",
+      "True",
+      "Hata verir",
+      "None"
+     ],
+     "a": 1,
+     "exp": "5 > 3 True, not True = False. 2 == 2 True. False or True = True (`or`'da biri doğruysa sonuç doğru)."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kod 0, 1, 2, 3, 4 sayılarını alt alta yazsın. Boşluğa ne gelmeli?",
+     "code": "for i in range(____):\n    print(i)",
+     "ans": [
+      "5",
+      "0,5",
+      "0, 5"
+     ],
+     "out": "0\n1\n2\n3\n4",
+     "exp": "range'e tek değer verilirse 0'dan başlar ve o değere kadar (dahil değil) gider: range(5) → 0..4."
+    },
+    {
+     "t": "fill",
+     "topic": "if",
+     "q": "Kod sayının pozitif, negatif ya da sıfır olduğunu yazsın. Boşluğa ne gelmeli?",
+     "code": "sayi = int(input())\nif sayi > 0:\n    print(\"Pozitif\")\nelif sayi ____ 0:\n    print(\"Negatif\")\nelse:\n    print(\"Sıfır\")",
+     "ans": [
+      "<"
+     ],
+     "inp": [
+      "-4"
+     ],
+     "out": "Negatif",
+     "exp": "Negatif sayılar 0'dan küçüktür: `sayi < 0`. İkisi de değilse else'e düşer: sıfır."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kod, kullanıcı 0 girene kadar sayı istesin; 0 girilince \"Bitti\" yazsın. Boşluğa ne gelmeli?",
+     "code": "sayi = int(input())\nwhile sayi ____ 0:\n    sayi = int(input())\nprint(\"Bitti\")",
+     "ans": [
+      "!="
+     ],
+     "inp": [
+      "5",
+      "-2",
+      "0"
+     ],
+     "out": "Bitti",
+     "exp": "\"0'a eşit olmadığı sürece\" devam et: `!=` (eşit değil). Negatif sayı da girilebileceği için `>` yetmez."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "135 dakikayı saat ve dakikaya çeviren kod `2 15` yazsın. Boşluğa hangi operatör gelmeli?",
+     "code": "dakika = 135\nsaat = dakika ____ 60\nkalan = dakika % 60\nprint(saat, kalan)",
+     "ans": [
+      "//"
+     ],
+     "out": "2 15",
+     "exp": "`//` bölümün tam kısmını verir: 135 // 60 = 2. `/` olsaydı 2.25 çıkardı."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan bir sayı al. Çiftse `Çift`, tekse `Tek` yazdır.",
+     "sol": "sayi = int(input())\nif sayi % 2 == 0:\n    print(\"Çift\")\nelse:\n    print(\"Tek\")",
+     "tests": [
+      {
+       "inp": [
+        "4"
+       ],
+       "out": "Çift"
+      },
+      {
+       "inp": [
+        "7"
+       ],
+       "out": "Tek"
+      },
+      {
+       "inp": [
+        "0"
+       ],
+       "out": "Çift"
+      }
+     ],
+     "exp": "2'ye bölümünden kalan 0 ise çift: `sayi % 2 == 0`."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "for döngüsüyle 1'den 10'a kadar olan çift sayıları alt alta yazdır (2, 4, 6, 8, 10).",
+     "sol": "for i in range(2, 11, 2):\n    print(i)",
+     "tests": [
+      {
+       "inp": [],
+       "out": "2\n4\n6\n8\n10"
+      }
+     ],
+     "exp": "2'den başlayıp 2'şer artır, bitiş 11 (10 dahil olsun diye). Alternatif: range(1, 11) içinde `if i % 2 == 0`."
+    },
+    {
+     "t": "code",
+     "topic": "while",
+     "q": "Kullanıcıdan bir sayı (n) al. while döngüsüyle n'den 1'e geriye doğru alt alta yazdır.",
+     "sol": "n = int(input())\nwhile n >= 1:\n    print(n)\n    n -= 1",
+     "tests": [
+      {
+       "inp": [
+        "3"
+       ],
+       "out": "3\n2\n1"
+      },
+      {
+       "inp": [
+        "1"
+       ],
+       "out": "1"
+      }
+     ],
+     "exp": "Koşul `n >= 1` (ya da `n > 0`), her turda `n -= 1`."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Girilen n sayısı için 1'den n'e kadar sayıların toplamını bulan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "toplam=0"
+      ],
+      [
+       "toplam=toplam+i",
+       "toplam+=i",
+       "toplam=i+toplam"
+      ],
+      [
+       "i<=n",
+       "i<n+1",
+       "n>=i"
+      ]
+     ],
+     "labels": [
+      "Toplamın başlangıç değeri",
+      "Toplama işlemi",
+      "Döngü koşulu"
+     ],
+     "exp": "Toplam 0'dan başlar (çarpımda 1'den başlardı, faktöriyel gibi). Her turda i eklenir, i artar; i<=n oldukça (E) toplama adımına dönülür.",
+     "svg": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">n</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"208\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=1</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"270\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"332\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=i+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 240,424 170,454 100,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M100,424 L40,424 L40,288 L100,288\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,480 H225.0 V512 Q197.5,504 170,512 T115.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,84 237.0,84 213.0,120 103.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">n</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=0</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"208\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=1</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"87.5\" y=\"270\" width=\"165\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=toplam+i</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"332\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i=i+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 240,424 170,454 100,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">i&lt;=n</text><path d=\"M100,424 L40,424 L40,288 L100,288\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,480 H225.0 V512 Q197.5,504 170,512 T115.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  },
+  {
+   "id": "c5",
+   "title": "Çalışma 5",
+   "desc": "Algoritma kriterleri, elif sırası, int(), or, range adımı, while çarpma; 5 sayının toplamı diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "akis",
+     "q": "\"Her türlü olasılık için algoritma sonlu adımda bitmeli\" ifadesi algoritmanın hangi kriteridir?",
+     "opts": [
+      "Girdi",
+      "Açıklık",
+      "Sonluluk",
+      "Etkinlik"
+     ],
+     "a": 2,
+     "exp": "Kriterler: Girdi (0 veya daha fazla değer), Çıktı (en az bir değer), Açıklık (her işlem açık), Sonluluk (sonlu adımda bitmeli), Etkinlik (kalem-kâğıtla yapılabilecek kadar basit)."
+    },
+    {
+     "t": "mc",
+     "topic": "if",
+     "q": "Kodun çıktısı nedir?",
+     "code": "x = 5\nif x > 3:\n    print(\"A\")\nelif x > 1:\n    print(\"B\")\nelse:\n    print(\"C\")",
+     "opts": [
+      "B",
+      "A ve B (alt alta)",
+      "C",
+      "A"
+     ],
+     "a": 3,
+     "exp": "if-elif-else zincirinde ilk doğru koşulun bloğu çalışır, gerisine bakılmaz. x > 3 doğru, sadece A yazılır."
+    },
+    {
+     "t": "fill",
+     "topic": "degisken",
+     "q": "Kullanıcı 20 girdiğinde kod 21 yazsın. Boşluğa hangi fonksiyon gelmeli?",
+     "code": "yas = ____(input(\"Yaşınız: \"))\nprint(yas + 1)",
+     "ans": [
+      "int"
+     ],
+     "inp": [
+      "20"
+     ],
+     "out": "21",
+     "exp": "`input()` metin döndürür; sayıyla toplamak için `int()` ile çevrilir. `float` olsaydı 21.0 yazardı."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "Gün Cumartesi ya da Pazar ise \"Hafta sonu\" yazsın. Boşluğa hangi mantıksal operatör gelmeli?",
+     "code": "gun = input()\nif gun == \"Cumartesi\" ____ gun == \"Pazar\":\n    print(\"Hafta sonu\")",
+     "ans": [
+      "or"
+     ],
+     "inp": [
+      "Pazar"
+     ],
+     "out": "Hafta sonu",
+     "exp": "İki koşuldan biri doğru olması yeterli: `or`. Gün aynı anda hem Cumartesi hem Pazar olamayacağı için `and` hiç çalışmaz."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kod 1, 3, 5, 7, 9 sayılarını alt alta yazsın. Boşluğa ne gelmeli?",
+     "code": "for i in range(1, 10, ____):\n    print(i)",
+     "ans": [
+      "2"
+     ],
+     "out": "1\n3\n5\n7\n9",
+     "exp": "Üçüncü değer artış miktarı: 1'den başlayıp 2'şer artınca tek sayılar çıkar."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kodun çıktısı 32 olsun. Boşluğa hangi aritmetik operatör gelmeli?",
+     "code": "x = 1\nwhile x < 20:\n    x = x ____ 2\nprint(x)",
+     "ans": [
+      "*"
+     ],
+     "out": "32",
+     "exp": "x her turda 2 ile çarpılır: 1 → 2 → 4 → 8 → 16 → 32. 32 < 20 yanlış olunca döngü biter ve 32 yazılır."
+    },
+    {
+     "t": "code",
+     "topic": "degisken",
+     "q": "Kullanıcıdan 3 sayı al ve ortalamalarını yazdır.",
+     "sol": "a = float(input())\nb = float(input())\nc = float(input())\nprint((a + b + c) / 3)",
+     "tests": [
+      {
+       "inp": [
+        "3",
+        "4",
+        "5"
+       ],
+       "out": "4.0"
+      },
+      {
+       "inp": [
+        "10",
+        "20",
+        "30"
+       ],
+       "out": "20.0"
+      }
+     ],
+     "exp": "Paranteze dikkat: `(a + b + c) / 3`. Parantezsiz `a + b + c / 3` sadece c'yi böler."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan yaşını al. 18 veya üstüyse `Ehliyet alabilir`, değilse `Ehliyet alamaz` yazdır.",
+     "sol": "yas = int(input())\nif yas >= 18:\n    print(\"Ehliyet alabilir\")\nelse:\n    print(\"Ehliyet alamaz\")",
+     "tests": [
+      {
+       "inp": [
+        "18"
+       ],
+       "out": "Ehliyet alabilir"
+      },
+      {
+       "inp": [
+        "17"
+       ],
+       "out": "Ehliyet alamaz"
+      },
+      {
+       "inp": [
+        "30"
+       ],
+       "out": "Ehliyet alabilir"
+      }
+     ],
+     "exp": "\"18 veya üstü\" = `>= 18`. Sadece `>` yazarsan 18 yaşındaki alamaz olur."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "Kullanıcıdan bir sayı al ve for döngüsüyle o sayının 1'den 5'e kadar katlarını alt alta yazdır (3 için: 3, 6, 9, 12, 15).",
+     "sol": "sayi = int(input())\nfor i in range(1, 6):\n    print(sayi * i)",
+     "tests": [
+      {
+       "inp": [
+        "3"
+       ],
+       "out": "3\n6\n9\n12\n15"
+      },
+      {
+       "inp": [
+        "7"
+       ],
+       "out": "7\n14\n21\n28\n35"
+      }
+     ],
+     "exp": "i 1'den 5'e gider, her turda `sayi * i` yazdırılır."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Girilen 5 sayının toplamını bulup ekrana yazan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "sayi",
+       "sayi"
+      ],
+      [
+       "toplam=toplam+sayi",
+       "toplam+=sayi",
+       "toplam=sayi+toplam"
+      ],
+      [
+       "sayac<5",
+       "sayac<=4",
+       "5>sayac"
+      ]
+     ],
+     "labels": [
+      "Döngü içindeki veri girişi",
+      "Toplama işlemi",
+      "Döngü koşulu"
+     ],
+     "exp": "Hocanın \"10 sayının toplamı\" örneğiyle aynı mantık. Sayaç 0'dan başladığı için 5 tekrar için koşul sayac<5. Veri girişi döngünün içinde olmalı, yoksa hep aynı sayı toplanır.",
+     "svg": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=0</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=0</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,208 237.0,208 213.0,244 103.0,244\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"270\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"332\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=sayac+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 240,424 170,454 100,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M100,424 L40,424 L40,226 L100,226\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,480 H225.0 V512 Q197.5,504 170,512 T115.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=0</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=0</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,208 237.0,208 213.0,244 103.0,244\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayi</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"74.0\" y=\"270\" width=\"192\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=toplam+sayi</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"332\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=sayac+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 245,424 170,454 95,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac&lt;5</text><path d=\"M95,424 L40,424 L40,226 L100,226\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"79\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,480 H225.0 V512 Q197.5,504 170,512 T115.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  }
+ ]
+};

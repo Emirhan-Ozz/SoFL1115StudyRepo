@@ -105,13 +105,18 @@ with open(os.path.join(ROOT, "audio-src", "scripts.json"), "w", encoding="utf8")
     json.dump({"narrator": NARRATOR, "items": audio}, f, ensure_ascii=False, indent=1)
 print("OK: assets/data.js, audio-src/scripts.json")
 
-# ---- önbellek kırıcı: index.html'deki assets bağlantılarına ?v=<özet> ekle ----
+# ---- önbellek kırıcı: html'lerdeki yerel js/css bağlantılarına ?v=<özet> ekle ----
 import hashlib
-idx = os.path.join(ROOT, "index.html")
-html = open(idx, encoding="utf8").read()
-def _v(m):
-    f = os.path.join(ROOT, "assets", m.group(1))
-    return f'assets/{m.group(1)}?v={hashlib.sha1(open(f, "rb").read()).hexdigest()[:8]}'
-html = re.sub(r"assets/([\w.-]+\.(?:js|css))(?:\?v=\w+)?", _v, html)
-open(idx, "w", encoding="utf8").write(html)
-print("index.html sürüm etiketleri güncellendi")
+for rel in ("index.html", "python/index.html"):
+    idx = os.path.join(ROOT, rel)
+    if not os.path.exists(idx):
+        continue
+    base = os.path.dirname(idx)
+    html = open(idx, encoding="utf8").read()
+    def _v(m):
+        f = os.path.normpath(os.path.join(base, m.group(2)))
+        h = hashlib.sha1(open(f, "rb").read()).hexdigest()[:8]
+        return f'{m.group(1)}="{m.group(2)}?v={h}"'
+    html = re.sub(r'(src|href)="((?!http)[\w./-]+\.(?:js|css))(?:\?v=\w+)?"', _v, html)
+    open(idx, "w", encoding="utf8").write(html)
+print("html sürüm etiketleri güncellendi")

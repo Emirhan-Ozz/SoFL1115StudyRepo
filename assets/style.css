@@ -189,3 +189,34 @@ table.vocab td.tr { color: #c9cdd3; }
 .flash .front { font-size: 1.6rem; font-weight: 600; }
 .flash .back { font-size: 1.2rem; color: var(--accent); }
 @media (max-width: 560px) { .top nav { gap: .7rem; font-size: .9rem; } .flash .front { font-size: 1.35rem; } table.vocab td { font-size: .93rem; } }
+
+/* ders geçişi */
+.courses { display: flex; gap: .2rem; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: .2rem; }
+.courses a { color: var(--muted); padding: .2rem .8rem; border-radius: 999px; font-size: .92rem; font-weight: 500; }
+.courses a:hover { text-decoration: none; color: var(--text); }
+.courses a.on { background: var(--panel2); color: var(--text); }
+
+/* python */
+.pq { padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.pqh { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+pre.code { background: #171a1e; border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem; overflow-x: auto;
+  font: 14.5px/1.55 ui-monospace, "Cascadia Code", Consolas, monospace; color: #dfe3e8; margin: .5rem 0; }
+input.blank { font: inherit; color: var(--text); background: var(--panel2); border: 1px dashed var(--accent); border-radius: 5px; padding: .05rem .35rem; min-width: 4ch; }
+input.blank:focus { outline: none; border-style: solid; }
+input.blank.right { border: 1px solid var(--ok); background: var(--ok-bg); }
+input.blank.wrong { border: 1px solid var(--bad); background: var(--bad-bg); }
+textarea.codebox { min-height: 130px; font: 14.5px/1.55 ui-monospace, "Cascadia Code", Consolas, monospace; tab-size: 4; background: #171a1e; }
+.pq .row { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0; }
+table.tt { width: 100%; border-collapse: collapse; font-size: .9rem; margin: .5rem 0; }
+table.tt th, table.tt td { padding: .35rem .5rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+table.tt th { color: var(--muted); font-weight: 500; }
+table.tt pre { margin: 0; font: 13.5px/1.45 ui-monospace, Consolas, monospace; white-space: pre-wrap; }
+table.tt tr.good td:last-child { color: var(--ok); }
+table.tt tr.bad td:last-child { color: var(--bad); }
+.flowwrap { overflow-x: auto; margin: .5rem 0; }
+.flowwrap svg { max-width: 100%; height: auto; }
+.blanks { display: grid; gap: .5rem; margin: .6rem 0; }
+.blanks label { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .6rem; align-items: center; }
+.blanks label span { color: var(--muted); font-size: .92rem; }
+.blanks input.blank { padding: .35rem .5rem; font-family: ui-monospace, Consolas, monospace; }
+@media (max-width: 560px) { .blanks label { grid-template-columns: 1fr; gap: .2rem; } .courses a { padding: .2rem .6rem; } }
