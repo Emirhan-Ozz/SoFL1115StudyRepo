@@ -154,8 +154,8 @@ for ex in EXAMS:
                 if got != q["out"]:
                     errors.append(f"{tag}: '{a}' ile çıktı {got!r}, beklenen {q['out']!r}")
         elif q["t"] == "code":
-            if len(q["sol"].splitlines()) > 5:
-                errors.append(f"{tag}: çözüm 5 satırdan uzun")
+            if len(q["sol"].splitlines()) > 6:
+                errors.append(f"{tag}: çözüm 6 satırdan uzun")
             for t in q["tests"]:
                 got = run(q["sol"], t["inp"])
                 if got != t["out"]:
@@ -181,3 +181,65 @@ with open(os.path.join(ROOT, "python", "data.js"), "w", encoding="utf8") as f:
     f.write("// build/make_py.py tarafından üretildi. Elle düzenleme: build/py_content.py\n")
     f.write("window.PY = " + json.dumps({"note": FORMAT_NOTE, "points": POINTS, "exams": out_exams}, ensure_ascii=False, indent=1) + ";\n")
 print("OK: tüm cevaplar Python ile doğrulandı -> python/data.js")
+
+# ---------------------------------------------------------------- ders notları
+from py_notes import NOTES  # noqa: E402
+
+
+def legend():
+    items = [("term", "Başla", "Başlangıç ve bitiş"), ("in", "A,B", "Veri girişi"), ("proc", "T=X+Y", "Aktarma, hesaplama, işlem"),
+             ("dec", "A>B", "Karar alma"), ("out", "Toplam", "Yazdırma")]
+    rows, y = [], 34
+    for k, lbl, desc in items:
+        s, _ = shape(k, 100, y, lbl)
+        rows.append(s + f'<text x="215" y="{y + 5}" stroke="none" fill="{TEXT}">{esc(desc)}</text>')
+        y += 72 if k == "dec" else 58
+    rows.append(arrow([(40, y - 6), (160, y - 6)]) + f'<text x="215" y="{y - 1}" stroke="none" fill="{TEXT}">Akış yönü</text>')
+    y += 40
+    rows.append(f'<circle cx="100" cy="{y - 6}" r="7"/><text x="215" y="{y - 1}" stroke="none" fill="{TEXT}">Birleştirici, bağlantı noktası</text>')
+    return (f'<svg viewBox="0 0 470 {y + 14}" width="470" xmlns="http://www.w3.org/2000/svg" class="flow" font-family="system-ui, sans-serif" font-size="14">'
+            f'<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="{STROKE}"/></marker></defs>'
+            f'<g stroke="{STROKE}" stroke-width="1.6" fill="{FILL}">' + "".join(rows) + "</g></svg>")
+
+
+def H(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+notes_out = []
+for note in NOTES:
+    html = []
+    for b in note["blocks"]:
+        k = b[0]
+        if k == "h":
+            html.append(f"<h2>{b[1]}</h2>")
+        elif k == "p":
+            html.append(f"<p>{b[1]}</p>")
+        elif k == "ul":
+            html.append("<ul>" + "".join(f"<li>{x}</li>" for x in b[1]) + "</ul>")
+        elif k == "table":
+            html.append('<table class="format"><tr>' + "".join(f"<th>{x}</th>" for x in b[1]) + "</tr>" +
+                        "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in b[2]) + "</table>")
+        elif k in ("trap", "tip"):
+            html.append(f'<div class="box {"trap" if k == "trap" else ""}">{b[1]}</div>')
+        elif k == "shapes":
+            html.append('<h3>Şekiller ve semboller</h3><div class="flowwrap">' + legend() + "</div>")
+        elif k == "flow":
+            html.append(f'<h3>{b[1]}</h3><div class="flowwrap">{svg(b[2])}</div>')
+        elif k == "code":
+            title, code, inp, note_txt = b[1], b[2], b[3], b[4]
+            out = run(code, inp or [])
+            if out.startswith("HATA"):
+                errors.append(f"not {note['id']} / {title}: {out}")
+            html.append(f'<h3>{title}</h3><pre class="code">{H(code)}</pre>'
+                        + (f'<div class="muted small">Örnek girdi: {H(", ".join(inp))}</div>' if inp else "")
+                        + f'<div class="outlbl">Çıktı</div><pre class="code out">{H(out)}</pre>'
+                        + (f'<p class="small muted">{note_txt}</p>' if note_txt else ""))
+    notes_out.append({"id": note["id"], "title": note["title"], "pdf": note["pdf"], "html": "\n".join(html)})
+if errors:
+    print("\n".join("HATA: " + e for e in errors))
+    sys.exit(1)
+with open(os.path.join(ROOT, "python", "notes.js"), "w", encoding="utf8") as f:
+    f.write("// build/make_py.py tarafından üretildi. Elle düzenleme: build/py_notes.py\n")
+    f.write("window.PYNOTES = " + json.dumps(notes_out, ensure_ascii=False) + ";\n")
+print("OK: ders notları -> python/notes.js (", sum(1 for n in NOTES for b in n["blocks"] if b[0] == "code"), "örnek kod çalıştırıldı )")

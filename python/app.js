@@ -53,9 +53,11 @@
   // ---------- yönlendirme ----------
   function route() {
     const page = location.hash.replace(/^#\/?/, '');
-    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (page === 'ozet' ? 'ozet' : 'home')));
+    const [p0, p1] = page.split('/');
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (p0 === 'ozet' || p0 === 'notlar' ? p0 : 'home')));
     const ex = PY.exams.find(e => e.id === page);
-    if (page === 'ozet') app.innerHTML = window.PYGUIDE;
+    if (p0 === 'ozet') app.innerHTML = window.PYGUIDE;
+    else if (p0 === 'notlar') renderNotes(p1);
     else if (ex) renderExam(ex);
     else renderHome();
     window.scrollTo(0, 0);
@@ -64,7 +66,7 @@
 
   function renderHome() {
     app.innerHTML = `<h1>MBP1104 Python vize çalışma</h1>
-      <p class="lead">Hocanın slaytlarındaki konulardan 5 çalışma. Her biri sınav formatında 10 soru: 2 test, 4 boşluk doldurma, 3 kısa kod yazma (for / while / if-else) ve 1 akış diyagramı.</p>
+      <p class="lead">Hocanın slaytlarındaki konulardan ${PY.exams.length} çalışma. Her biri sınav formatında 10 soru: 2 test, 4 boşluk doldurma, 3 kısa kod yazma (for / while / if-else) ve 1 akış diyagramı.</p>
       <div class="box small muted">${esc(PY.note)}</div>
       <div class="cards">${PY.exams.map(e => {
         const best = store.get('best-' + e.id, null);
@@ -72,7 +74,7 @@
       }).join('')}</div>
       <h2>Nasıl çalışılır?</h2>
       <ul>
-        <li>Önce <a href="#/ozet">konu özetine</a> göz at.</li>
+        <li>Önce <a href="#/notlar">ders notlarını</a> (hocanın 4 PDF'i, örnek ve lab çözümleriyle) ya da tek sayfalık <a href="#/ozet">hızlı özeti</a> oku.</li>
         <li><b>Kod yazma</b> sorularında kodunu yaz, "Çalıştır ve kontrol et"e bas: kodun tarayıcıda gerçek Python ile çalıştırılır ve test girdileriyle denenir. İlk çalıştırmada Python birkaç saniyede yüklenir.</li>
         <li><b>Akış diyagramı</b> sorusunda önce kâğıda tamamını çizmeyi dene, sonra (1)(2)(3) kutularını doldur. Bitirince tam diyagram gösterilir.</li>
         <li>"Anında kontrol" açıksa her soru cevaplandığı anda kontrol edilir; kapalıysa sonda "Bitir ve puanla".</li>
@@ -214,6 +216,18 @@
       btn.textContent = 'Puanlandı';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }
+
+
+  function renderNotes(id) {
+    const N = window.PYNOTES || [];
+    const n = N.find(x => x.id === id) || N[0];
+    app.innerHTML = `<h1>Ders notları</h1>
+      <p class="lead">Hocanın PDF'lerinin konu konu özeti. Örnek kodlar çalıştırılıp çıktıları eklendi; slaytlardaki yazım hataları düzeltilip not düşüldü.</p>
+      <div class="chips notetabs">${N.map(x => `<a href="#/notlar/${x.id}" class="${x.id === n.id ? 'on' : ''}">${esc(x.title)}</a>`).join('')}</div>
+      <div class="notehead"><h1>${esc(n.title)}</h1>${n.pdf ? `<a class="btn small" href="${n.pdf}" target="_blank" rel="noopener">Orijinal PDF'i aç</a>` : ''}</div>
+      <div class="note">${n.html}</div>
+      <div class="actions">${(() => { const i = N.indexOf(n); return (i > 0 ? `<a class="btn" href="#/notlar/${N[i - 1].id}">← ${esc(N[i - 1].title)}</a>` : '') + (i < N.length - 1 ? `<a class="btn main" href="#/notlar/${N[i + 1].id}">${esc(N[i + 1].title)} →</a>` : `<a class="btn main" href="#/">Çalışmalara geç →</a>`); })()}</div>`;
   }
 
   function md(s) { return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'); }

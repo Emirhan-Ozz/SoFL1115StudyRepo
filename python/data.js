@@ -890,6 +890,372 @@ window.PY = {
      "svgFull": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=0</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=0</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,208 237.0,208 213.0,244 103.0,244\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayi</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"74.0\" y=\"270\" width=\"192\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam=toplam+sayi</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"332\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=sayac+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 245,424 170,454 95,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac&lt;5</text><path d=\"M95,424 L40,424 L40,226 L100,226\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"79\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M115.0,480 H225.0 V512 Q197.5,504 170,512 T115.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">toplam</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
     }
    ]
+  },
+  {
+   "id": "c6",
+   "title": "Çalışma 6",
+   "desc": "Büyük/küçük harf, döngüde toplam izleme, iç içe if, not, while izleme; geçti/kaldı diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "degisken",
+     "q": "Bir programda `yas`, `Yas` ve `YAS` adında üç değişken tanımlanıyor. Hangisi doğrudur?",
+     "opts": [
+      "Üçü aynı değişkendir",
+      "Üç farklı değişkendir",
+      "Syntax Error verir",
+      "Sadece `yas` geçerli bir addır"
+     ],
+     "a": 1,
+     "exp": "Python büyük/küçük harf duyarlıdır; `yas`, `Yas` ve `YAS` üç ayrı değişkendir (hocanın slaytındaki yaş/Yaş/YAŞ örneği)."
+    },
+    {
+     "t": "mc",
+     "topic": "for",
+     "q": "Kodun çıktısı nedir?",
+     "code": "toplam = 0\nfor i in range(1, 4):\n    toplam += i * 2\nprint(toplam)",
+     "opts": [
+      "6",
+      "9",
+      "12",
+      "24"
+     ],
+     "a": 2,
+     "exp": "i = 1, 2, 3 (4 dahil değil). Eklenenler 2, 4, 6 → toplam 12. print döngünün dışında olduğu için bir kez yazılır."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kodun çıktısı 10, 8, 6, 4, 2 (alt alta) olsun. Boşluğa ne gelmeli?",
+     "code": "for i in range(____, 0, -2):\n    print(i)",
+     "ans": [
+      "10"
+     ],
+     "out": "10\n8\n6\n4\n2",
+     "exp": "İlk yazılan değer başlangıçtır: 10. 2'şer azalır, bitiş 0 dahil olmadığı için 2'de durur."
+    },
+    {
+     "t": "fill",
+     "topic": "if",
+     "q": "İç içe koşulla, 0–10 arasındaki sayılar için \"aralıkta\" yazılsın. Boşluğa ne gelmeli?",
+     "code": "deger = int(input())\nif deger >= 0:\n    ____ deger <= 10:\n        print(\"aralıkta\")",
+     "ans": [
+      "if"
+     ],
+     "inp": [
+      "5"
+     ],
+     "out": "aralıkta",
+     "exp": "İkinci kontrol, birincinin içinde ayrı bir `if`'tir. İki koşul da True olunca yazdırılır (`and` ile yazmanın iç içe hali)."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "Kodun çıktısı `True` olsun. Boşluğa hangi mantıksal operatör gelmeli?",
+     "code": "x = 7\nprint(____ (x > 10))",
+     "ans": [
+      "not"
+     ],
+     "out": "True",
+     "exp": "x > 10 False'tur; `not` sonucu tersine çevirir: True."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kodun çıktısı 4 olsun. Boşluğa hangi karşılaştırma operatörü gelmeli?",
+     "code": "toplam = 0\ni = 0\nwhile toplam ____ 10:\n    i += 1\n    toplam += i\nprint(i)",
+     "ans": [
+      "<"
+     ],
+     "out": "4",
+     "exp": "Adım adım: i=1 toplam=1, i=2 toplam=3, i=3 toplam=6, i=4 toplam=10. `toplam < 10` artık False, döngü biter, 4 yazılır. `<=` olsaydı bir tur daha döner, 5 yazardı."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan bir sayı al. 0 ile 100 arasındaysa (ikisi dahil) `Geçerli`, değilse `Geçersiz` yazdır.",
+     "sol": "sayi = int(input())\nif sayi >= 0 and sayi <= 100:\n    print(\"Geçerli\")\nelse:\n    print(\"Geçersiz\")",
+     "tests": [
+      {
+       "inp": [
+        "50"
+       ],
+       "out": "Geçerli"
+      },
+      {
+       "inp": [
+        "100"
+       ],
+       "out": "Geçerli"
+      },
+      {
+       "inp": [
+        "-1"
+       ],
+       "out": "Geçersiz"
+      },
+      {
+       "inp": [
+        "101"
+       ],
+       "out": "Geçersiz"
+      }
+     ],
+     "exp": "\"İkisi dahil\" = `>=` ve `<=`. İki koşul birlikte sağlanmalı: `and`."
+    },
+    {
+     "t": "code",
+     "topic": "while",
+     "q": "while döngüsüyle 1'den başlayıp her seferinde 2 ile çarparak 100'den küçük sayıları alt alta yazdır (1, 2, 4, 8, 16, 32, 64).",
+     "sol": "x = 1\nwhile x < 100:\n    print(x)\n    x = x * 2",
+     "tests": [
+      {
+       "inp": [],
+       "out": "1\n2\n4\n8\n16\n32\n64"
+      }
+     ],
+     "exp": "Önce yazdır, sonra 2 ile çarp. 64 × 2 = 128 olunca koşul (x < 100) False olur ve döngü biter."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "Kullanıcıdan bir sayı (n) al. for döngüsüyle n'in faktöriyelini (1 × 2 × … × n) yazdır.",
+     "sol": "n = int(input())\nf = 1\nfor i in range(1, n + 1):\n    f = f * i\nprint(f)",
+     "tests": [
+      {
+       "inp": [
+        "5"
+       ],
+       "out": "120"
+      },
+      {
+       "inp": [
+        "1"
+       ],
+       "out": "1"
+      },
+      {
+       "inp": [
+        "3"
+       ],
+       "out": "6"
+      }
+     ],
+     "exp": "Çarpımın başlangıç değeri 1 olmalı (0 olsaydı sonuç hep 0 çıkardı). range(1, n+1) ile n de dahil edilir. Hocanın akış diyagramı Lab-1'inin kodu."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Vize (%40) ve final (%60) notuna göre ortalaması 50 ve üstüyse \"Geçti\", değilse \"Kaldı\" yazan akış diyagramındaki boş kutuları doldur.",
+     "blanks": [
+      [
+       "ort=vize*0.4+final*0.6",
+       "ort=final*0.6+vize*0.4",
+       "ort=0.4*vize+0.6*final",
+       "ort=0.6*final+0.4*vize"
+      ],
+      [
+       "ort>=50",
+       "50<=ort"
+      ],
+      [
+       "\"gecti\"",
+       "gecti",
+       "'gecti'"
+      ]
+     ],
+     "labels": [
+      "Ortalama hesabı (ort=…)",
+      "Karar kutusundaki koşul",
+      "E (evet) dalında yazdırılan"
+     ],
+     "exp": "Bu bir mantıksal akış diyagramı: giriş → hesap → karar → iki dal → birleşme → bitir. \"50 ve üstü\" = `>=`.",
+     "svg": "<svg viewBox=\"0 0 460 486\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"122.0,84 242.0,84 218.0,120 98.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">vize,final</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,208 240,238 170,268 100,238\"/><text x=\"170\" y=\"243\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,268 L170,300\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"176\" y=\"282\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><path d=\"M115.0,296 H225.0 V328 Q197.5,320 170,328 T115.0,328 Z\"/><text x=\"170\" y=\"319\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M240,238 L360,238 L360,300\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"246\" y=\"232\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M305.0,296 H415.0 V328 Q387.5,320 360,328 T305.0,328 Z\"/><text x=\"360\" y=\"319\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">\"Kaldı\"</text><circle cx=\"170\" cy=\"372\" r=\"6\"/><path d=\"M170,328 L170,366\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M360,328 L360,372 L176,372\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M170,378 L170,428\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"446\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"451\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 486\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"122.0,84 242.0,84 218.0,120 98.0,120\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">vize,final</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"56.0\" y=\"146\" width=\"228\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">ort=vize*0.4+final*0.6</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,208 245,238 170,268 95,238\"/><text x=\"170\" y=\"243\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">ort&gt;=50</text><path d=\"M170,268 L170,300\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"176\" y=\"282\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><path d=\"M115.0,296 H225.0 V328 Q197.5,320 170,328 T115.0,328 Z\"/><text x=\"170\" y=\"319\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">\"Geçti\"</text><path d=\"M245,238 L360,238 L360,300\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"251\" y=\"232\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M305.0,296 H415.0 V328 Q387.5,320 360,328 T305.0,328 Z\"/><text x=\"360\" y=\"319\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">\"Kaldı\"</text><circle cx=\"170\" cy=\"372\" r=\"6\"/><path d=\"M170,328 L170,366\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M360,328 L360,372 L176,372\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M170,378 L170,428\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"446\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"451\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
+  },
+  {
+   "id": "c7",
+   "title": "Çalışma 7",
+   "desc": "Diyagram türleri, metin × sayı, end, float, lower(), basamak sayma, 'q' girilene kadar döngü; faktöriyel diyagramı.",
+   "q": [
+    {
+     "t": "mc",
+     "topic": "akis",
+     "q": "Hangi akış diyagramı türünde doğru sonuca ulaşmak için bazı adımlar tekrar edilir?",
+     "opts": [
+      "Doğrusal",
+      "Mantıksal",
+      "Paralel",
+      "Döngüsel"
+     ],
+     "a": 3,
+     "exp": "Doğrusal: giriş → işlem → çıkış. Mantıksal: karara göre dallanır. Döngüsel: bazı adımlar tekrar edilir. \"Paralel\" diye bir tür derste yok."
+    },
+    {
+     "t": "mc",
+     "topic": "degisken",
+     "q": "Kodun çıktısı nedir?",
+     "code": "a = \"5\"\nb = 2\nprint(a * b)",
+     "opts": [
+      "10",
+      "55",
+      "Hata verir",
+      "7"
+     ],
+     "a": 1,
+     "exp": "a tırnak içinde, yani bir metin (str). Metin × sayı, metni o kadar tekrarlar: \"5\" * 2 = \"55\". Bu yüzden input()'tan gelen değer int()'e çevrilmeden hesap yapılmaz."
+    },
+    {
+     "t": "fill",
+     "topic": "for",
+     "q": "Kodun çıktısı `1 2 3` (yan yana) olsun. Boşluğa ne gelmeli?",
+     "code": "for i in range(1, 4):\n    print(i, ____=\" \")",
+     "ans": [
+      "end"
+     ],
+     "out": "1 2 3",
+     "exp": "`print(..., end=\" \")` satır sonuna alt satır yerine boşluk koyar; böylece sayılar yan yana yazılır."
+    },
+    {
+     "t": "fill",
+     "topic": "degisken",
+     "q": "Kullanıcı boyunu 1.75 girdiğinde kod 175.0 yazsın. Boşluğa hangi fonksiyon gelmeli?",
+     "code": "boy = ____(input(\"Boyunuz (m): \"))\nprint(boy * 100)",
+     "ans": [
+      "float"
+     ],
+     "inp": [
+      "1.75"
+     ],
+     "out": "175.0",
+     "exp": "Ondalıklı sayı için `float()`. `int(\"1.75\")` ValueError verir; çevirmeden `\"1.75\" * 100` ise metni 100 kez tekrarlar."
+    },
+    {
+     "t": "fill",
+     "topic": "operator",
+     "q": "Kullanıcı e-postayı büyük harfle girse de \"Doğru\" yazsın. Boşluğa hangi metot gelmeli?",
+     "code": "email = \"email@yasar.edu.tr\"\ngirilen = input()\nif email == girilen.____():\n    print(\"Doğru\")\nelse:\n    print(\"Yanlış\")",
+     "ans": [
+      "lower"
+     ],
+     "inp": [
+      "EMAIL@Yasar.edu.tr"
+     ],
+     "out": "Doğru",
+     "exp": "`.lower()` metni küçük harfe çevirir (hocanın Örnek-6'sındaki `girilenEmail.lower().strip()`)."
+    },
+    {
+     "t": "fill",
+     "topic": "while",
+     "q": "Kod 4572 sayısının basamak sayısını (4) bulsun. Boşluğa hangi operatör gelmeli?",
+     "code": "sayi = 4572\nbasamak = 0\nwhile sayi > 0:\n    sayi = sayi ____ 10\n    basamak += 1\nprint(basamak)",
+     "ans": [
+      "//"
+     ],
+     "out": "4",
+     "exp": "Her turda son basamak atılır: 4572 → 457 → 45 → 4 → 0. `//` tam bölme yapar; `/` olsaydı sayı hiç 0 olmaz ve döngü yüzlerce kez dönerdi."
+    },
+    {
+     "t": "code",
+     "topic": "if",
+     "q": "Kullanıcıdan iki sayı al ve büyük olanı yazdır (eşitlerse herhangi birini).",
+     "sol": "a = int(input())\nb = int(input())\nif a > b:\n    print(a)\nelse:\n    print(b)",
+     "tests": [
+      {
+       "inp": [
+        "3",
+        "8"
+       ],
+       "out": "8"
+      },
+      {
+       "inp": [
+        "9",
+        "2"
+       ],
+       "out": "9"
+      },
+      {
+       "inp": [
+        "5",
+        "5"
+       ],
+       "out": "5"
+      }
+     ],
+     "exp": "Çalışma 1'deki akış diyagramının kodu. Eşitlikte else'e düşer ve b yazılır; ikisi de aynı olduğu için doğru."
+    },
+    {
+     "t": "code",
+     "topic": "for",
+     "q": "for döngüsüyle 1'den 20'ye kadar olan 5'in katlarını alt alta yazdır (5, 10, 15, 20).",
+     "sol": "for i in range(5, 21, 5):\n    print(i)",
+     "tests": [
+      {
+       "inp": [],
+       "out": "5\n10\n15\n20"
+      }
+     ],
+     "exp": "5'ten başla, 5'er artır, bitiş 21 (20 dahil olsun diye). Alternatif: `range(1, 21)` içinde `if i % 5 == 0`."
+    },
+    {
+     "t": "code",
+     "topic": "while",
+     "q": "Kullanıcıdan kelime al ve aynen geri yazdır; kullanıcı `q` girene kadar tekrar et (`q` yazdırılmaz).",
+     "sol": "k = input()\nwhile k != \"q\":\n    print(k)\n    k = input()",
+     "tests": [
+      {
+       "inp": [
+        "elma",
+        "armut",
+        "q"
+       ],
+       "out": "elma\narmut"
+      },
+      {
+       "inp": [
+        "merhaba",
+        "q"
+       ],
+       "out": "merhaba"
+      }
+     ],
+     "exp": "İlk kelimeyi döngüden önce al, döngünün sonunda yenisini iste. Koşul `!= \"q\"`: q gelince döngü biter."
+    },
+    {
+     "t": "flow",
+     "topic": "akis",
+     "q": "Girilen pozitif bir tam sayının faktöriyelini hesaplayan akış diyagramındaki boş kutuları doldur (hocanın Lab-1'i).",
+     "blanks": [
+      [
+       "faktoriyel=1"
+      ],
+      [
+       "faktoriyel=faktoriyel*sayac",
+       "faktoriyel*=sayac",
+       "faktoriyel=sayac*faktoriyel"
+      ],
+      [
+       "sayac<=sayi",
+       "sayac<=sayi",
+       "sayac<sayi+1",
+       "sayac<sayi+1",
+       "sayi>=sayac",
+       "sayi>=sayac"
+      ]
+     ],
+     "labels": [
+      "Faktöriyelin başlangıç değeri",
+      "Çarpma işlemi",
+      "Döngü koşulu"
+     ],
+     "exp": "Çarpımın başlangıcı 1. Sayaç 1'den sayıya kadar gider; sayac<=sayı oldukça (E) çarpma adımına dönülür. Geri dönen ok giriş kutusuna değil çarpmaya gider.",
+     "svg": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"84\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(1)</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=1</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,208 237.0,208 213.0,244 103.0,244\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayı</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"270\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(2)</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"332\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=sayac+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 240,424 170,454 100,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#8fb3d9\" font-weight=\"600\">(3)</text><path d=\"M100,424 L40,424 L40,288 L100,288\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"84\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M110.0,480 H230.0 V512 Q200.0,504 170,512 T110.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">faktoriyel</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>",
+     "svgFull": "<svg viewBox=\"0 0 460 600\" width=\"460\" xmlns=\"http://www.w3.org/2000/svg\" class=\"flow\" font-family=\"system-ui, sans-serif\" font-size=\"14\"><defs><marker id=\"ah\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#aeb4bd\"/></marker></defs><g stroke=\"#aeb4bd\" stroke-width=\"1.6\" fill=\"#252930\"><ellipse cx=\"170\" cy=\"40\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"45\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Başla</text><path d=\"M170,58 L170,84\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"101.0\" y=\"84\" width=\"138\" height=\"36\"/><text x=\"170\" y=\"107\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">faktoriyel=1</text><path d=\"M170,120 L170,146\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"115.0\" y=\"146\" width=\"110\" height=\"36\"/><text x=\"170\" y=\"169\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=1</text><path d=\"M170,182 L170,208\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"127.0,208 237.0,208 213.0,244 103.0,244\"/><text x=\"170\" y=\"231\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayı</text><path d=\"M170,244 L170,270\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"33.5\" y=\"270\" width=\"273\" height=\"36\"/><text x=\"170\" y=\"293\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">faktoriyel=faktoriyel*sayac</text><path d=\"M170,306 L170,332\" fill=\"none\" marker-end=\"url(#ah)\"/><rect x=\"96.5\" y=\"332\" width=\"147\" height=\"36\"/><text x=\"170\" y=\"355\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac=sayac+1</text><path d=\"M170,368 L170,394\" fill=\"none\" marker-end=\"url(#ah)\"/><polygon points=\"170,394 265,424 170,454 75,424\"/><text x=\"170\" y=\"429\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">sayac&lt;=sayı</text><path d=\"M75,424 L40,424 L40,288 L100,288\" fill=\"none\" marker-end=\"url(#ah)\"/><text x=\"59\" y=\"418\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">E</text><text x=\"176\" y=\"468\" font-size=\"12\" stroke=\"none\" fill=\"#aeb4bd\">H</text><path d=\"M170,454 L170,484\" fill=\"none\" marker-end=\"url(#ah)\"/><path d=\"M110.0,480 H230.0 V512 Q200.0,504 170,512 T110.0,512 Z\"/><text x=\"170\" y=\"503\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">faktoriyel</text><path d=\"M170,512 L170,542\" fill=\"none\" marker-end=\"url(#ah)\"/><ellipse cx=\"170\" cy=\"560\" rx=\"50\" ry=\"18\"/><text x=\"170\" y=\"565\" text-anchor=\"middle\" stroke=\"none\" fill=\"#e4e6ea\">Bitir</text></g></svg>"
+    }
+   ]
   }
  ]
 };
